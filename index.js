@@ -34,6 +34,7 @@ app.get('/webhook', function (req, res) {
 });
 
 
+
 app.post('/webhook', function(req, res){
 	var data = req.body;
 	console.log('data');
@@ -113,6 +114,8 @@ function receivedMessage(event) {
   }
 }
 
+
+
 function sendQuickReplies(recipientId, messageText)
 {
 	var messageData = 
@@ -157,6 +160,19 @@ function sendTextMessage(recipientId, messageText) {
 
   callSendAPI(messageData);
 }
+
+request.post({
+    method: 'POST',
+    uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+    qs: {
+		access_token: Config.FB_PAGE_TOKEN,
+        setting_type: 'greeting',
+        greeting: {'Welcome here'},
+        },
+    json: true
+}, (err, res, body) => {
+    // Deal with the response
+});
 
 function callSendAPI(messageData) {
   request({
