@@ -79,7 +79,7 @@ function receivedMessage(event) {
 
   if (messageText) {
 	  console.log(messageText);
-	  console.log('facebook access token' + Config.FB_PAGE_TOKEN);
+	  console.log('facebook access token ' + Config.FB_PAGE_TOKEN);
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -90,14 +90,14 @@ function receivedMessage(event) {
 		break;
 		
       case 'image':
-        sendImageMessage(senderID);
+        sendQuickReplies(senderID, 'Bonjour');
         break;
 
       case 'button':
         sendButtonMessage(senderID);
         break;
 
-      case 'genericgeneric':
+      case 'generic':
         sendGenericMessage(senderID);
         break;
 
@@ -112,6 +112,37 @@ function receivedMessage(event) {
     sendTextMessage(senderID, "Message with attachment received");
   }
 }
+
+function sendQuickreplies(recipientId, messageText)
+{
+	var messageData = 
+	{
+		recipient : 
+		{
+			id : recipientId
+		},
+		message : 
+		{
+		text : "choose something : ",
+		quick_replies : 
+			[
+				{
+					content_type : "text", 
+					title : "Red",
+					payload: "payload for first thing"
+				},
+				{
+					content_type: "text",
+					title: "Blue",
+					payload: "paload for second thing"
+				}
+			]
+		}
+	};
+callSendAPI(messageData)
+	
+}
+	
 
 function sendTextMessage(recipientId, messageText) {
 	console.log(recipientId);
