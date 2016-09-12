@@ -33,11 +33,7 @@ app.get('/webhook', function (req, res) {
 	}
 });
 
-
-
-app.post('/webhook', function(req, res){
-	
-	request.post({
+request.post({
     method: 'POST',
     uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: {
@@ -46,9 +42,21 @@ app.post('/webhook', function(req, res){
         greeting: {text : 'Welcome here'},
         },
     json: true
-}, (err, res, body) => {
-    // Deal with the response
-});
+	}, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      
+
+      console.log("Successfully sent greeting message");
+    } else {
+      console.error("Unable to send message.");
+      //console.error(response);
+      //console.error(error);
+    }
+});  
+
+app.post('/webhook', function(req, res){
+	
+	
 
 	var data = req.body;
 	console.log('data');
