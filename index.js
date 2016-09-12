@@ -36,7 +36,7 @@ app.get('/webhook', function (req, res) {
 
 app.post('/webhook', function(req, res){
 	var data = req.body;
-	
+	console.log('data');
 	if (data.object =='page'){
 	
 	data.entry.forEach(function(pageEntry){
@@ -91,7 +91,7 @@ function receivedMessage(event) {
         sendButtonMessage(senderID);
         break;
 
-      case 'generic':
+      case 'genericgeneric':
         sendGenericMessage(senderID);
         break;
 
@@ -123,7 +123,7 @@ function sendTextMessage(recipientId, messageText) {
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: PAGE_ACCESS_TOKEN },
+    qs: { access_token: Config.PAGE_ACCESS_TOKEN},
     method: 'POST',
     json: messageData
 
