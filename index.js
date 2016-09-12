@@ -49,9 +49,9 @@ request.post({
 
       console.log("Successfully sent greeting message");
     } else {
-      console.error("Unable to send message.");
-      //console.error(response);
-      //console.error(error);
+      console.error("Unable to send greeting message.");
+      console.error(response);
+      console.error(error);
     }
 });  
 
