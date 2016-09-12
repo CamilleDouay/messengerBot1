@@ -167,7 +167,7 @@ request.post({
     qs: {
 		access_token: Config.FB_PAGE_TOKEN,
         setting_type: 'greeting',
-        greeting: {'Welcome here'},
+        greeting: {text : 'Welcome here'},
         },
     json: true
 }, (err, res, body) => {
