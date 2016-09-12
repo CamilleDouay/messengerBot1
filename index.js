@@ -83,6 +83,11 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
+		console.log(messageText);
+		case 'bonjour': 
+		sendHelloWordMessage(senderID);
+		break;
+		
       case 'image':
         sendImageMessage(senderID);
         break;
@@ -108,6 +113,7 @@ function receivedMessage(event) {
 }
 
 function sendTextMessage(recipientId, messageText) {
+	console.log(recipientId);
   var messageData = {
     recipient: {
       id: recipientId
