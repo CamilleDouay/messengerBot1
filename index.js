@@ -89,7 +89,7 @@ function receivedMessage(event) {
 		sendHelloWordMessage(senderID);
 		break;
 		
-      case 'image':
+      case 'quickreplies':
         sendQuickReplies(senderID, 'Bonjour');
         break;
 
@@ -113,7 +113,7 @@ function receivedMessage(event) {
   }
 }
 
-function sendQuickreplies(recipientId, messageText)
+function sendQuickReplies(recipientId, messageText)
 {
 	var messageData = 
 	{
