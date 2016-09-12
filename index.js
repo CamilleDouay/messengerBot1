@@ -1,9 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
-var app = express();
 
 const Config = require('./config.js');
+
+var app = express();
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
