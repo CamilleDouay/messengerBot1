@@ -79,6 +79,7 @@ function receivedMessage(event) {
 
   if (messageText) {
 	  console.log(messageText);
+	  console.log('facebook access token' + Config.FB_PAGE_TOKEN);
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -128,8 +129,8 @@ function sendTextMessage(recipientId, messageText) {
 
 function callSendAPI(messageData) {
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: Config.FB_PAGE_TOKEN},
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token: Config.FB_PAGE_TOKEN},
     method: 'POST',
     json: messageData
 
