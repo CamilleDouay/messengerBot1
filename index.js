@@ -24,7 +24,7 @@ app.get('/webhook', function (req, res) {
 	if(!Config.FB_VERIFY_TOKEN){
 		throw new Error('missing FB_VERIFY_TOKEN')
 	}
-	if (req.query['hub.verify_token'] == config.FB_VERIFY_TOKEN){
+	if (req.query['hub.verify_token'] == Config.FB_VERIFY_TOKEN){
 		console.log("validating webhook");
 		res.status(200).send(req.query['hub.challenge']);
 	} else {
