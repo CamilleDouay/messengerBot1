@@ -34,15 +34,15 @@ app.get('/webhook', function (req, res) {
 });
 
 request.post({
+	uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token: Config.FB_PAGE_TOKEN},
     method: 'POST',
-    uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-    qs: {
-		access_token: Config.FB_PAGE_TOKEN,
-        setting_type: 'greeting',
-        greeting: {text : 'Welcome here'},
-        },
-    json: true
-	}, function (error, response, body) {
+    json: {
+		setting_type: "greeting",
+		greeting: {
+			text : "welcome"
+		}
+	}function (error, response, body) {
     if (!error && response.statusCode == 200) {
       
 
