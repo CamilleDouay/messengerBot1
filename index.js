@@ -34,7 +34,7 @@ app.get('/webhook', function (req, res) {
 });
 
 request.post({
-	uri: 'https://graph.facebook.com/v2.6/me/messages',
+	uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: {access_token: Config.FB_PAGE_TOKEN},
     method: 'POST',
     json: {
