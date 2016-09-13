@@ -76,7 +76,7 @@ app.post('/webhook', function(req, res){
 	
 
 	var data = req.body;
-	console.log('data');
+	console.log('data ' + data);
 	if (data.object =='page'){
 	
 	data.entry.forEach(function(pageEntry){
@@ -110,7 +110,7 @@ function receivedMessage(event) {
 
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
-  console.log(JSON.stringify(message));
+  console.log('message : ' + JSON.stringify(message));
 
   var messageId = message.mid;
 
@@ -120,7 +120,6 @@ function receivedMessage(event) {
 
   if (messageText) {
 	  console.log(messageText);
-	  console.log('facebook access token ' + Config.FB_PAGE_TOKEN);
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
