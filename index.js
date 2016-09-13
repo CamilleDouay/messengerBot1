@@ -33,49 +33,20 @@ app.get('/webhook', function (req, res) {
 	}
 });
 
-// request.post({
-	// uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-    // qs: {access_token: Config.FB_PAGE_TOKEN},
-    // method: 'POST',
-    // json: {
-		// setting_type: "greeting",
-		// greeting: {
-			// text : "welcome"
-		// }
-	// }
-// }, function (error, response, body) {
-    // if (!error && response.statusCode == 200) {
-      
+var greeting = {
+	setting-type : "call_to_actions",
+	thread_state: "new_thread,
+	call_to_actions:[
+		{	
+			payload:'GET_START'
+		}
+	]
+}
 
-      // console.log("Successfully sent greeting message");
-    // } else {
-      // console.error("Unable to send greeting message.");
-      // console.error(response);
-      // console.error(error);
-    // }
-// });  
-
-
+thread_settingsAPI(greeting)
 
 app.post('/webhook', function(req, res){
 	
-	
-	request({
-    method: 'POST',
-    uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-    qs: {access_token: Config.FB_PAGE_TOKEN},
-	json:{
-		setting_type: "call_to_actions",
-        thread_state: 'new_thread',
-        call_to_actions: [
-			{
-                payload: 'GET_START'
-            }
-		]
-	}
-}, (err, res, body) => {
-    // Deal with the response
-});
 	var data = req.body;
 	console.log('data ' + data);
 	if (data.object =='page'){
@@ -205,6 +176,28 @@ function sendTextMessage(recipientId, messageText) {
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token: Config.FB_PAGE_TOKEN},
+    method: 'POST',
+    json: messageData
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      console.log("Successfully sent generic message with id %s to recipient %s", 
+        messageId, recipientId);
+    } else {
+      console.error("Unable to send message.");
+      //console.error(response);
+      //console.error(error);
+    }
+  });  
+}
+
+function thread_settingsAPI(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: {access_token: Config.FB_PAGE_TOKEN},
     method: 'POST',
     json: messageData
