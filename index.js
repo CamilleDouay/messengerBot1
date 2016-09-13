@@ -55,7 +55,12 @@ app.get('/webhook', function (req, res) {
     // }
 // });  
 
-request.post({
+
+
+app.post('/webhook', function(req, res){
+	
+	
+	request.post({
     method: 'POST',
     uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: {access_token: Config.FB_PAGE_TOKEN},
@@ -71,8 +76,6 @@ request.post({
 }, (err, res, body) => {
     // Deal with the response
 });
-
-app.post('/webhook', function(req, res){
 	var data = req.body;
 	console.log('data ' + data);
 	if (data.object =='page'){
