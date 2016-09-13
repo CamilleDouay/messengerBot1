@@ -33,27 +33,43 @@ app.get('/webhook', function (req, res) {
 	}
 });
 
-request.post({
-	uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-    qs: {access_token: Config.FB_PAGE_TOKEN},
-    method: 'POST',
-    json: {
-		setting_type: "greeting",
-		greeting: {
-			text : "welcome"
-		}
-	}
-}, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+// request.post({
+	// uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+    // qs: {access_token: Config.FB_PAGE_TOKEN},
+    // method: 'POST',
+    // json: {
+		// setting_type: "greeting",
+		// greeting: {
+			// text : "welcome"
+		// }
+	// }
+// }, function (error, response, body) {
+    // if (!error && response.statusCode == 200) {
       
 
-      console.log("Successfully sent greeting message");
-    } else {
-      console.error("Unable to send greeting message.");
-      console.error(response);
-      console.error(error);
-    }
-});  
+      // console.log("Successfully sent greeting message");
+    // } else {
+      // console.error("Unable to send greeting message.");
+      // console.error(response);
+      // console.error(error);
+    // }
+// });  
+
+request.post({
+    method: 'POST',
+    uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+    qs: {
+		access_token: Config.FB_PAGE_TOKEN,
+        setting_type: 'call_to_actions',
+        thread_state: 'new_thread',
+            call_to_actions: [{
+                payload: 'GET_START'
+            }]
+        },
+    json: true
+}, (err, res, body) => {
+    // Deal with the response
+});
 
 app.post('/webhook', function(req, res){
 	
