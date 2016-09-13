@@ -46,7 +46,8 @@ var greeting = {
 thread_settingsAPI(greeting)
 
 app.post('/webhook', function(req, res){
-	
+	thread_settingsAPI(greeting)
+
 	var data = req.body;
 	console.log('data ' + data);
 	if (data.object =='page'){
@@ -211,8 +212,8 @@ function thread_settingsAPI(messageData) {
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
-      //console.error(response);
-      //console.error(error);
+      console.error(response);
+      console.error(error);
     }
   });  
 }
