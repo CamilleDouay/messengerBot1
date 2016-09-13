@@ -84,13 +84,13 @@ app.post('/webhook', function(req, res){
 		var timeOfEvent = pageEntry.time;
 		
 		pageEntry.messaging.forEach(function(messagingEvent){
-			console.log(messagingEvent)
 		 if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
           receivedMessage(messagingEvent);
         } else if (messagingEvent.delivery) {
-          receivedDeliveryConfirmation(messagingEvent);
+          console.log(messagingEvent.delivery);
+		  // receivedDeliveryConfirmation(messagingEvent);
         } else if (messagingEvent.postback) {
           receivedPostback(messagingEvent);
         } else {
