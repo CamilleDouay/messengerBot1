@@ -58,23 +58,19 @@ app.get('/webhook', function (req, res) {
 request.post({
     method: 'POST',
     uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
-    qs: {
-		access_token: Config.FB_PAGE_TOKEN,
-        setting_type: 'call_to_actions',
+    qs: {access_token: Config.FB_PAGE_TOKEN}
+	json: {
+		setting_type: "call_to_actions",
         thread_state: 'new_thread',
-            call_to_actions: [{
+        call_to_actions: [{
                 payload: 'GET_START'
             }]
         },
-    json: true
 }, (err, res, body) => {
     // Deal with the response
 });
 
 app.post('/webhook', function(req, res){
-	
-	
-
 	var data = req.body;
 	console.log('data ' + data);
 	if (data.object =='page'){
