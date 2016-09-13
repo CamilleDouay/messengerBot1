@@ -50,7 +50,6 @@ var greeting = {
 
 
 app.post('/webhook', function(req, res){
-	thread_settingsAPI(greeting)
 
 	var data = req.body;
 	console.log('data ' + data);
