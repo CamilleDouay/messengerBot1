@@ -60,7 +60,7 @@ app.get('/webhook', function (req, res) {
 app.post('/webhook', function(req, res){
 	
 	
-	request.post({
+	request({
     method: 'POST',
     uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: {access_token: Config.FB_PAGE_TOKEN},
