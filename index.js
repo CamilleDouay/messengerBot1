@@ -59,13 +59,13 @@ request.post({
     method: 'POST',
     uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: {access_token: Config.FB_PAGE_TOKEN}
-	json: {
+	json:{
 		setting_type: "call_to_actions",
         thread_state: 'new_thread',
         call_to_actions: [{
                 payload: 'GET_START'
             }]
-        },
+        }
 }, (err, res, body) => {
     // Deal with the response
 });
