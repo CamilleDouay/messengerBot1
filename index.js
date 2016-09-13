@@ -34,7 +34,7 @@ app.get('/webhook', function (req, res) {
 });
 
 var greeting = {
-	setting-type : "call_to_actions",
+	setting_type : "call_to_actions",
 	thread_state: "new_thread,
 	call_to_actions:[
 		{	
