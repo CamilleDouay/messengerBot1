@@ -33,7 +33,7 @@ app.get('/webhook', function (req, res) {
 	}
 });
 
-var greeting = {
+var get_start = {
 	setting_type : "call_to_actions",
 	thread_state: "new_thread",
 	call_to_actions:[
@@ -43,7 +43,11 @@ var greeting = {
 	]
 }
 
-thread_settingsAPI(greeting)
+var greeting = {
+	setting_type : "greeting",
+	greeting: {"Welcome here Mister"}
+}
+
 
 app.post('/webhook', function(req, res){
 	thread_settingsAPI(greeting)
@@ -205,11 +209,7 @@ function thread_settingsAPI(messageData) {
 
   }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      var recipientId = body.recipient_id;
-      var messageId = body.message_id;
-
-      console.log("Successfully sent generic message with id %s to recipient %s", 
-        messageId, recipientId);
+      console.log("Successfully sent greeting message with ");
     } else {
       console.error("Unable to send message.");
       console.error(response);
