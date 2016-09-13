@@ -45,7 +45,7 @@ var get_start = {
 
 var greeting = {
 	setting_type : "greeting",
-	greeting: {"Welcome here Mister"}
+	greeting: {text : "Welcome here Mister"}
 }
 
 
